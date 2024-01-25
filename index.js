@@ -1,7 +1,9 @@
 const gridPanel = document.querySelector(".container");
+const resetBtn = document.querySelector('.reset');
 const randomColor = ['red', 'black', 'blue', 'yellow', 'green'];
 const CONTAINER_SIZE = 600;
-let color = 'black';
+const DEF_GRIDSIZE =  16;
+const DEF_COLOR = 'black';
 
 // creates a grid like panel inside the container
 function createPanel (numOfPanel){
@@ -16,13 +18,21 @@ function createPanel (numOfPanel){
             panel.style.height = panelSize +'px';
             //panel.style.backgroundColor = `${random}`;
             gridPanel.appendChild(panel);
-            
             panel.addEventListener('mouseover', () => {
-                panel.style.backgroundColor = color;
+                panel.style.backgroundColor = DEF_COLOR;
             });
-    
+
+            resetBtn.addEventListener('click', () =>{
+                reset();
+            });
     }
-    console.log(random);
+}
+
+function reset(){
+    const panels = document.querySelectorAll('.grid-panel');
+    panels.forEach((gridPanel) => {
+        gridPanel.style.backgroundColor = 'white';
+    });
 }
 
 function changeColor() {
@@ -30,7 +40,11 @@ function changeColor() {
 }
 
 
-createPanel(16);
+createPanel(DEF_GRIDSIZE);
+
+// for button animation 
+
+
 
 
 //const grids = document.querySelectorAll('grid-panel');
