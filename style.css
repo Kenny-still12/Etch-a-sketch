@@ -10,3 +10,9 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
+
+.grid-panel {
+    border: solid 1px rgb(254, 254, 254);
+    margin: 0;
+    box-sizing: border-box;
+}
