@@ -45,7 +45,7 @@ body {
 }
 
 .grid-panel {
-    border: solid 1px rgb(254, 254, 254);
+    border: solid 1px grey;
     margin: 0;
     box-sizing: border-box;
 }

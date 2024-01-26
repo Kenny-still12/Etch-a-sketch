@@ -8,9 +8,11 @@ const CONTAINER_SIZE = 600;
 const DEF_GRIDSIZE =  16;
 const DEF_COLOR = 'black';
 
+
 // creates a grid like panel inside the container
 function createPanel (numOfPanel){
 
+    gridPanel.innerHTML = '';
     let panelSize = CONTAINER_SIZE / numOfPanel;
 
     for(let i = 0; i < numOfPanel *numOfPanel; i++){
@@ -18,15 +20,10 @@ function createPanel (numOfPanel){
             panel.classList.add('grid-panel');
             panel.style.width = panelSize +'px';
             panel.style.height = panelSize +'px';
-            //panel.style.backgroundColor = `${random}`;
             gridPanel.appendChild(panel);
 
             panel.addEventListener('mouseover', () => {
                 panel.style.backgroundColor = DEF_COLOR;
-            });
-
-            resetBtn.addEventListener('click', () =>{
-                reset();
             });
 
             randColorBtn.addEventListener('click', () => {
@@ -41,12 +38,20 @@ function createPanel (numOfPanel){
                     panel.style.backgroundColor = DEF_COLOR;
                 });
             });
-
-            //sizeBtn.addEventListener('click', () => {
-            //    changeSize();
-            //});
     }
 }
+
+createPanel(DEF_GRIDSIZE);
+
+sizeBtn.addEventListener('click', () => {
+    console.log(changeSize());
+});
+
+resetBtn.addEventListener('click', () =>{
+    reset();
+});
+
+
 
 function reset(){
     const panels = document.querySelectorAll('.grid-panel');
@@ -67,11 +72,17 @@ function random() {
 }
 
 function changeSize (){
-    let size = parseInt(prompt("enter the number ranged 1 - 128"));
+    let size = parseInt(prompt("Enter the number between 12 - 32"));
 
-    if (size <= 1 || size >= 64) {
+    if (size == null || size == ''){
+        return; 
+    }
+    if (size < 12 || size > 32) {
+        changeSize();
+    }
+    else {
+        reset();
         createPanel(size);
     }
 }
 
-createPanel(DEF_GRIDSIZE);
